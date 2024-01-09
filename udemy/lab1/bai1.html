@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //dữ liệu
+        const game = {
+            teams: ['Bayern Munich', 'Real Madrid'],
+            players: {
+                team1: ['Neuer', 'Kimmich', 'Boateng', 'Alaba', 'Davies', 'Goretzka', 'Muller', 'Sané', 'Gnabry', 'Lewandowski', 'Coman'],
+                team2: ['Courtois', 'Carvajal', 'Varane', 'Ramos', 'Marcelo', 'Casemiro', 'Modric', 'Kroos', 'Vinicius', 'Benzema', 'Asensio'],
+            },
+            odds: {
+                team1: 1.75,
+                draw: 3.5,
+                team2: 1,
+            },
+            scored: ['Davies', 'Muller', 'Lewandowski', 'Kimmich'],
+        };
+
+        const [gk1, ...fieldPlayers1] = game.players.team1;
+        const [gk2, ...fieldPlayers2] = game.players.team2;
+
+        const allPlayers = [...game.players.team1, ...game.players.team2];
+
+        const players1Final = [...game.players.team1, 'Thiago', 'Coutinho', 'Perisic'];
+
+        const { team1, draw, team2 } = game.odds;
+
+        function printGoals(...scorers) {
+            console.log('Cầu thủ đã ghi bàn là:', ...scorers);
+        }
+        const winner = (team1 > team2 && 'Bayern Munich') || (team2 > team1 && 'Real Madrid') || 'draw';
+
+
+        console.log("Cầu thủ đội Bayern Munich là: " + gk1 + "," + fieldPlayers1.join(","));
+        console.log("Cầu thủ đội Real Madrid là: " + gk1 + "," + fieldPlayers1.join(","));
+
+
+        printGoals(...game.scored);
+        console.log('Đội chiến thắng:', winner);
+    </script>
+</body>
+
+</html>

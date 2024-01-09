@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        //dữ liệu
+        const game = {
+            teams: ['Bayern Munich', 'Real Madrid'],
+            players: {
+                team1: ['Neuer', 'Kimmich', 'Boateng', 'Alaba', 'Davies', 'Goretzka', 'Muller', 'Sané', 'Gnabry', 'Lewandowski', 'Coman'],
+                team2: ['Courtois', 'Carvajal', 'Varane', 'Ramos', 'Marcelo', 'Casemiro', 'Modric', 'Kroos', 'Vinicius', 'Benzema', 'Asensio'],
+            },
+            odds: {
+                team1: 1.75,
+                draw: 3.5,
+                team2: 5.5,
+            },
+            scored: ['Davies', 'Muller', 'Lewandowski', 'Kimmich'],
+        };
+
+        game.scored.forEach((player, index) => {
+            console.log(`Cầu thủ ghi bàn thứ ${index + 1} : ${player}`);
+        });
+
+        let team1TotalOdds = 0;
+        let team2TotalOdds = 0;
+        let drawTotalOdds = 0;
+        for (const odd in game.odds) {
+            if (odd === 'team1') team1TotalOdds += game.odds[odd];
+            else if (odd === 'team2') team2TotalOdds += game.odds[odd];
+            else if (odd === 'draw') drawTotalOdds += game.odds[odd];
+        }
+        const team1AverageOdds = team1TotalOdds / Object.keys(game.odds).length;
+        const team2AverageOdds = team2TotalOdds / Object.keys(game.odds).length;
+        const drawAverageOdds = drawTotalOdds / Object.keys(game.odds).length;
+
+        console.log('Tỉ lệ trung bình:');
+        console.log(`Tỉ lệ thắng của ${game.teams[0]}: ${team1AverageOdds.toFixed(2)}`);
+        console.log(`Tỉ lệ hòa: ${drawAverageOdds.toFixed(2)}`);
+        console.log(`Tỉ lệ thắng của ${game.teams[1]}: ${team2AverageOdds.toFixed(2)}`);
+
+
+        //tạo đối tượng scorers
+        const scorers = {};
+        game.scored.forEach((player) => {
+            scorers[player] = scorers[player] ? scorers[player] + 1 : 1;
+        });
+        console.log('Đối tượng scorers:', scorers);
+
+    </script>
+</body>
+
+</html>
